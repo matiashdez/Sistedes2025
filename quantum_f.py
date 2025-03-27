@@ -2,15 +2,29 @@ import qiskit
 import math, cmath
 from termcolor import colored
 
-def or_gate (qc, input_qbits, output_qbit):
+## delete if new version woks
+def or_gate_old (qc, input_qbits, output_qbit):
     qc.x(input_qbits)
     qc.x(output_qbit)
     qc.mcx(input_qbits, output_qbit)
     qc.x(input_qbits)
 
-def nor_gate (qc, input_qbits, output_qbit):
+## delete if new version woks
+def nor_gate_old (qc, input_qbits, output_qbit):
     or_gate (qc, input_qbits, output_qbit)
     qc.x(output_qbit)
+
+
+def or_gate (qc, input_qbits, output_qbit):
+    nor_gate (qc, input_qbits, output_qbit)
+    qc.x(output_qbit)
+
+def nor_gate (qc, input_qbits, output_qbit):
+    qc.x(input_qbits)
+    qc.mcx(input_qbits, output_qbit)
+    qc.x(input_qbits)
+
+    
 
 def and_gate (qc, input_qbits, output_qbit):
     qc.mcx(input_qbits, output_qbit)
